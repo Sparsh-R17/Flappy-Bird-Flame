@@ -1,0 +1,4 @@
+enum PipePostion {
+  top,
+  bottom
+}
