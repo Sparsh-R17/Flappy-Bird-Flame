@@ -1,6 +1,8 @@
 import 'dart:math';
 
 import 'package:flame/components.dart';
+import 'package:flame_audio/flame_audio.dart';
+import 'package:flappy_bird_flame/utils/constants/assets.dart';
 import '../../flappy_bird_game.dart';
 import 'pipe.dart';
 import '../../utils/constants/config.dart';
@@ -35,10 +37,16 @@ class PipeGroup extends PositionComponent with HasGameRef<FlappyBirdGame> {
 
     if (position.x < -10) {
       removeFromParent();
+      increaseScore();
     }
     if (gameRef.isHit) {
       removeFromParent();
       gameRef.isHit = false;
     }
+  }
+
+  void increaseScore() {
+    gameRef.bird.score++;
+    FlameAudio.play(Assets.point);
   }
 }
