@@ -1,16 +1,20 @@
+import 'package:flame/events.dart';
 import 'package:flame/game.dart';
 import 'package:flame/timer.dart';
-import 'package:flappy_bird_flame/game/widgets/background.dart';
-import 'package:flappy_bird_flame/game/widgets/bird.dart';
-import 'package:flappy_bird_flame/game/widgets/ground.dart';
-import 'package:flappy_bird_flame/game/widgets/pipe_group.dart';
-import 'package:flappy_bird_flame/utils/constants/config.dart';
+import 'game/widgets/background.dart';
+import 'game/widgets/bird.dart';
+import 'game/widgets/ground.dart';
+import 'game/widgets/pipe_group.dart';
+import 'utils/constants/config.dart';
 
-class FlappyBirdGame extends FlameGame {
+class FlappyBirdGame extends FlameGame with TapDetector, HasCollisionDetection {
   FlappyBirdGame();
 
   late Bird bird;
-  Timer interval = Timer(Config.pipeInterval, repeat: true);
+  Timer interval = Timer(
+    Config.pipeInterval,
+    repeat: true,
+  );
 
   @override
   Future<void> onLoad() async {
@@ -23,6 +27,12 @@ class FlappyBirdGame extends FlameGame {
     );
 
     interval.onTick = () => add(PipeGroup());
+  }
+
+  @override
+  void onTap() {
+    super.onTap();
+    bird.fly();
   }
 
   @override

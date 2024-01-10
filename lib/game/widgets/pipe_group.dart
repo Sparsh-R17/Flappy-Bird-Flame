@@ -1,10 +1,10 @@
 import 'dart:math';
 
 import 'package:flame/components.dart';
-import 'package:flappy_bird_flame/flappy_bird_game.dart';
-import 'package:flappy_bird_flame/game/widgets/pipe.dart';
-import 'package:flappy_bird_flame/utils/constants/config.dart';
-import 'package:flappy_bird_flame/utils/enums/pipe_position.dart';
+import '../../flappy_bird_game.dart';
+import 'pipe.dart';
+import '../../utils/constants/config.dart';
+import '../../utils/enums/pipe_position.dart';
 
 class PipeGroup extends PositionComponent with HasGameRef<FlappyBirdGame> {
   PipeGroup();

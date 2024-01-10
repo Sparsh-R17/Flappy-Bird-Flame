@@ -1,12 +1,13 @@
+import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 import 'package:flame/flame.dart';
 import 'package:flame/parallax.dart';
-import 'package:flappy_bird_flame/flappy_bird_game.dart';
-import 'package:flappy_bird_flame/utils/constants/config.dart';
+import '../../flappy_bird_game.dart';
+import '../../utils/constants/config.dart';
 
 import '../../utils/constants/assets.dart';
 
-class Ground extends ParallaxComponent<FlappyBirdGame> {
+class Ground extends ParallaxComponent<FlappyBirdGame> with HasGameRef<FlappyBirdGame> {
   Ground();
 
   @override
@@ -16,6 +17,13 @@ class Ground extends ParallaxComponent<FlappyBirdGame> {
       [
         ParallaxLayer(ParallaxImage(ground, fill: LayerFill.none)),
       ],
+    );
+
+    add(
+      RectangleHitbox(
+        position: Vector2(0, gameRef.size.y - Config.groundHeight),
+        size: Vector2(gameRef.size.x, Config.groundHeight),
+      ),
     );
   }
 
