@@ -15,6 +15,7 @@ class FlappyBirdGame extends FlameGame with TapDetector, HasCollisionDetection {
     Config.pipeInterval,
     repeat: true,
   );
+  bool isHit = false;
 
   @override
   Future<void> onLoad() async {
